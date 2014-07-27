@@ -1,0 +1,15 @@
+<p><a href="http://senseis.xmp.net/?WhatIsGo">Go</a> is a game often praised for its simple rules, and the great complexity and depth that comes from them.</p>
+<blockquote><p>&#8220;The rules of Go are so elegant, organic, and rigorously logical that if intelligent life forms exist elsewhere in the universe, they almost certainly play Go.&#8221;<cite>&emsp;&mdash; <a href="https://en.wikipedia.org/wiki/Edward_Lasker">Edward Lasker</a></cite></p></blockquote>
+<p>I have written what I consider to be the simplest ruleset for the game of go. It&rsquo;s designed to be the least restrictive ruleset possible, while still keeping the essence of what makes go go. Here&rsquo;s a complete definition of the rules:</p>
+<ol start="0">
+    <li>The game is played on a finite graph.</li>
+    <li>Each player is assigned a discrete colour.</li>
+    <li>Play is alternate colouring of a non-coloured node.</li>
+    <li>A play of a colour causes loss of the other colours of all nodes without a path along the other colours to no colour and subsequently causes a loss of the colour of all nodes without a path along the colour to no colour.</li>
+    <li value="4">No colouring after a play and its caused losses may be recreated.</li>
+</ol>
+<p>The rules are based on graph theory. Unlike traditional rulesets they don&rsquo;t specify the kind of board to play on, the number of players, the colours, or even passes and how to win. The result is a variant of go that can be played on any board, with any number of players, and play continues until there are no legal moves left (or more than likely the other players forfeits).</p>
+<!--
+<p>When playing on a 19&times;19 grid with two players this ruleset is very similar to the Japanese or Chinese rules commonly used today. The biggest difference is the lack of passes, at first this may appear to cripple the game, especially when there are no restrictions on suiciding your own group, but I argue that not only does it not cripple the game, it actually adds to its depth while simplifying the rules.</p>
+<p>Here are some problems for the reader to solve (for the purpose of these problems assume no previous positions have yet been played when applying rule 4).</p>
+-->

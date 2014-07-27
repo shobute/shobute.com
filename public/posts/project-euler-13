@@ -1,0 +1,20 @@
+<p><a href="https://projecteuler.net/problem=13">Problem 13</a> asks:</p>
+<blockquote><p>Work out the first ten digits of the sum of the following one-hundred 50-digit numbers.</p></blockquote>
+<p>Here&rsquo;s my solution in Java, I left out a lot of the numbers for clarity&rsquo;s sake:</p>
+<pre>
+public class Problem13 {
+    private static double[] NUMS = {
+        37107287.533902102798797998220837590246510135740250,
+        46376937.677490009712648124896970078050417018260538,
+        /* 96 other numbers go here... */
+        20849603.980134001723930671666823555245252804609722,
+        53503534.226472524250874054075591789781264330331690
+    };
+    public static void main(String[] args) {
+        double sum = 0;
+        for (double num : NUMS) sum += num;
+        System.out.println((long)sum);
+    }
+}
+</pre>
+<p>It almost feels like cheating by storing the numbers as doubles but it works well because precision is not important and by putting the decimal point after 8 digits I end up with 10 digits after adding together 10<sup>2</sup> of them.</p>

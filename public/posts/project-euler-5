@@ -1,0 +1,14 @@
+<p><a href="http://projecteuler.net/problem=5">Problem 5</a> asks:</p>
+<blockquote><p>What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?</p></blockquote>
+<p>I did another brute-force solution in Java, not the most elegant way to solve it, but it runs in a third of a second on my computer:</p>
+<pre>public class Problem5 {
+    public static void main(String[] args) {
+        int div = 3;
+        for (int result=20; div&lt;20; result+=20) {
+            for (div=3; result%div==0; div++) {
+                if (div == 19) System.out.println(result);
+            }
+        }
+    }
+}</pre>
+<p>One thing to note is the outer loop increments by 20 because you know 20 will have to be a factor, so it saves a lot of time checking unnecessary numbers (and division can start from 3 because if it&rsquo;s divisible by 20 it&rsquo;s divisible by 2).

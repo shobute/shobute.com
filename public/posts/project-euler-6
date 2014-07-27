@@ -1,0 +1,20 @@
+<p><a href="http://projecteuler.net/problem=6">Problem 6</a> asks:</p>
+<blockquote><p>Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.</p></blockquote>
+<p>This has been the simplest problem so far, here&rsquo;s my straight forward solution in Java:</p>
+<pre>public class Problem6 {
+    public static void main(String[] args) {
+        int sumOfSqs = 0;
+        int sqOfSum = 0;
+        for (int i=1; i<=100; i++) {
+            sumOfSqs += i * i;
+            sqOfSum += i;
+        }
+        sqOfSum *= sqOfSum;
+        System.out.println(sqOfSum - sumOfSqs);
+    }
+}</pre>
+<p>I decided to try and find the general case. I know from school that the sum of the natural numbers 1 to n is \(\tfrac{1}{2}n(n+1)\), so the square of the sum is \(\tfrac{1}{4}n^2(n+1)^2\). I didn&rsquo;t know how to go about making a general formula for the sum of squares, so I cheated and looked on Wikipedia, I found <a href="https://en.wikipedia.org/wiki/Faulhaber%27s_formula">Faulhaber&rsquo;s formula</a> which gives me the sum of squares being \(\tfrac{1}{6}n(n+1)(2n+1)\). Which implies
+$$\begin{align}s - t &= (\tfrac{1}{2}n(n+1))^2 - \tfrac{1}{6}n(n+1)(2n+1)\\
+&= \tfrac{1}{12}n(n+1)(3n+2)(n-1)\end{align}$$
+Where \(s\) is the square of the sum, and \(t\) is the sum of squares.</p>
+<p>Now with that groundwork done it&rsquo;s simple to solve this problem for very big n in a <em>very</em> fast time.</p>

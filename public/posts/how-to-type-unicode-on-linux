@@ -1,0 +1,74 @@
+<p>I often want to type characters which aren’t on my keyboard, especially when writing HTML, characters such as: curly quotes, thin spaces, copyright symbols, em dashes, etc. In the past I would resort to using the HTML entities, e.g. <code>&amp;mdash;</code>, but as all my HTML files are encoded in UTF-8 it makes sense to type them directly, X11 makes that easy.</p>
+<p>You simply assign a key on your keyboard to act as a “<a href="http://www.x.org/releases/X11R7.7/doc/man/man5/Compose.5.xhtml">compose</a> key”, I use AltGr, but you can the Windows key, the menu key, caps lock, or any key you don't make use of. To set the AltGr key as your compose key type <code>setxkbmap -option compose:ralt</code> in your terminal, and/or put it in <code>~/.xinitrc</code> to make it permanent. That’s it! You can press your compose key and then type <code>12</code> to get ½, or <code>&lt;3</code> to get ♥, or <code>!?</code> to get ‽. It’s as simple as that.</p>
+<p>There are thousands of combinations preloaded, and most of them are very intuitive. You can see the full list in <code>/usr/share/X11/locale/en_US.UTF-8/Compose</code>. It’s also easy to add your own combinations, just place them in <code>~/.XCompose</code>, restart the application you want to use them in and you’re good to go.</p>
+<p>Here’s my basic <code>~/.XCompose</code> which extends the defaults:</p>
+<pre>
+include "/usr/share/X11/locale/en_US.UTF-8/Compose"
+
+# EMOTICONS
+&lt;Multi_key> &lt;o> &lt;underscore> &lt;o>               : "ಠ_ಠ" # LOOK OF DISAPPROVAL
+&lt;Multi_key> &lt;colon> &lt;D>                        : "😃"   # :D
+&lt;Multi_key> &lt;semicolon> &lt;parenright>           : "😉"   # ;)
+&lt;Multi_key> &lt;colon> &lt;p>                        : "😛"   # :p
+&lt;Multi_key> &lt;semicolon> &lt;p>                    : "😜"   # ;p
+&lt;Multi_key> &lt;colon> &lt;bar>                      : "😐"   # :| 
+&lt;Multi_key> &lt;colon> &lt;apostrophe> &lt;parenright>  : "😢"   # :'( 
+
+# PUNCTUATION
+&lt;Multi_key> &lt;bracketright> &lt;apostrophe> : "’"   U2019    # RIGHT SINGLE QUOTATION MARK
+&lt;Multi_key> &lt;bracketleft> &lt;apostrophe>  : "‘"   U2018    # LEFT SINGLE QUOTATION MARK
+&lt;Multi_key> &lt;bracketright> &lt;quotedbl>   : "”"   U201d    # RIGHT DOUBLE QUOTATION MARK
+&lt;Multi_key> &lt;bracketleft> &lt;quotedbl>    : "“"   U201c    # LEFT DOUBLE QUOTATION MARK
+&lt;Multi_key> &lt;space> &lt;t>                 : " "   U2009    # THIN SPACE
+&lt;Multi_key> &lt;space> &lt;m>                 : " "   U2003    # EM SPACE
+
+# GREEK
+&lt;Multi_key> &lt;g> &lt;A>    : "Α"   U0391    # GREEK CAPITAL LETTER ALPHA
+&lt;Multi_key> &lt;g> &lt;a>    : "α"   U03B1    # GREEK SMALL LETTER ALPHA
+&lt;Multi_key> &lt;g> &lt;B>    : "Β"   U0392    # GREEK CAPITAL LETTER BETA
+&lt;Multi_key> &lt;g> &lt;b>    : "β"   U03B2    # GREEK SMALL LETTER BETA
+&lt;Multi_key> &lt;g> &lt;D>    : "Δ"   U0394    # GREEK CAPITAL LETTER DELTA
+&lt;Multi_key> &lt;g> &lt;d>    : "δ"   U03B4    # GREEK SMALL LETTER DELTA
+&lt;Multi_key> &lt;g> &lt;E>    : "Ε"   U0395    # GREEK CAPITAL LETTER EPSILON
+&lt;Multi_key> &lt;g> &lt;e>    : "ε"   U03B5    # GREEK SMALL LETTER EPSILON
+&lt;Multi_key> &lt;g> &lt;F>    : "Φ"   U03A6    # GREEK CAPITAL LETTER PHI
+&lt;Multi_key> &lt;g> &lt;f>    : "φ"   U03C6    # GREEK SMALL LETTER PHI
+&lt;Multi_key> &lt;g> &lt;G>    : "Γ"   U0393    # GREEK CAPITAL LETTER GAMMA
+&lt;Multi_key> &lt;g> &lt;g>    : "γ"   U03B3    # GREEK SMALL LETTER GAMMA
+&lt;Multi_key> &lt;g> &lt;H>    : "Η"   U0397    # GREEK CAPITAL LETTER ETA
+&lt;Multi_key> &lt;g> &lt;h>    : "η"   U03B7    # GREEK SMALL LETTER ETA
+&lt;Multi_key> &lt;g> &lt;I>    : "Ι"   U0399    # GREEK CAPITAL LETTER IOTA
+&lt;Multi_key> &lt;g> &lt;i>    : "ι"   U03B9    # GREEK SMALL LETTER IOTA
+&lt;Multi_key> &lt;g> &lt;J>    : "Θ"   U0398    # GREEK CAPITAL LETTER THETA
+&lt;Multi_key> &lt;g> &lt;j>    : "θ"   U03B8    # GREEK SMALL LETTER THETA
+&lt;Multi_key> &lt;g> &lt;K>    : "Κ"   U039A    # GREEK CAPITAL LETTER KAPPA
+&lt;Multi_key> &lt;g> &lt;k>    : "κ"   U03BA    # GREEK SMALL LETTER KAPPA
+&lt;Multi_key> &lt;g> &lt;L>    : "Λ"   U039B    # GREEK CAPITAL LETTER LAMDA
+&lt;Multi_key> &lt;g> &lt;l>    : "λ"   U03BB    # GREEK SMALL LETTER LAMDA
+&lt;Multi_key> &lt;g> &lt;M>    : "Μ"   U039C    # GREEK CAPITAL LETTER MU
+&lt;Multi_key> &lt;g> &lt;m>    : "μ"   U03BC    # GREEK SMALL LETTER MU
+&lt;Multi_key> &lt;g> &lt;N>    : "Ν"   U039D    # GREEK CAPITAL LETTER NU
+&lt;Multi_key> &lt;g> &lt;n>    : "ν"   U03BD    # GREEK SMALL LETTER NU
+&lt;Multi_key> &lt;g> &lt;O>    : "Ο"   U039F    # GREEK CAPITAL LETTER OMICRON
+&lt;Multi_key> &lt;g> &lt;o>    : "ο"   U03BF    # GREEK SMALL LETTER OMICRON
+&lt;Multi_key> &lt;g> &lt;P>    : "Π"   U03A0    # GREEK CAPITAL LETTER PI
+&lt;Multi_key> &lt;g> &lt;p>    : "π"   U03C0    # GREEK SMALL LETTER PI
+&lt;Multi_key> &lt;g> &lt;Q>    : "Χ"   U03A7    # GREEK CAPITAL LETTER CHI
+&lt;Multi_key> &lt;g> &lt;q>    : "χ"   U03C7    # GREEK SMALL LETTER CHI
+&lt;Multi_key> &lt;g> &lt;R>    : "Ρ"   U03A1    # GREEK CAPITAL LETTER RHO
+&lt;Multi_key> &lt;g> &lt;r>    : "ρ"   U03C1    # GREEK SMALL LETTER RHO
+&lt;Multi_key> &lt;g> &lt;S>    : "Σ"   U03A3    # GREEK CAPITAL LETTER SIGMA
+&lt;Multi_key> &lt;g> &lt;s>    : "σ"   U03C3    # GREEK SMALL LETTER SIGMA
+&lt;Multi_key> &lt;g> &lt;T>    : "Τ"   U03A4    # GREEK CAPITAL LETTER TAU
+&lt;Multi_key> &lt;g> &lt;t>    : "τ"   U03C4    # GREEK SMALL LETTER TAU
+&lt;Multi_key> &lt;g> &lt;U>    : "Υ"   U03A5    # GREEK CAPITAL LETTER UPSILON
+&lt;Multi_key> &lt;g> &lt;u>    : "υ"   U03C5    # GREEK SMALL LETTER UPSILON
+&lt;Multi_key> &lt;g> &lt;W>    : "Ω"   U03A9    # GREEK CAPITAL LETTER OMEGA
+&lt;Multi_key> &lt;g> &lt;w>    : "ω"   U03C9    # GREEK SMALL LETTER OMEGA
+&lt;Multi_key> &lt;g> &lt;X>    : "Ξ"   U039E    # GREEK CAPITAL LETTER XI
+&lt;Multi_key> &lt;g> &lt;x>    : "ξ"   U03BE    # GREEK SMALL LETTER XI
+&lt;Multi_key> &lt;g> &lt;Y>    : "Ψ"   U03A8    # GREEK CAPITAL LETTER PSI
+&lt;Multi_key> &lt;g> &lt;y>    : "ψ"   U03C8    # GREEK SMALL LETTER PSI
+&lt;Multi_key> &lt;g> &lt;Z>    : "Ζ"   U0396    # GREEK CAPITAL LETTER ZETA
+&lt;Multi_key> &lt;g> &lt;z>    : "ζ"   U03B6    # GREEK SMALL LETTER ZETA
+</pre>

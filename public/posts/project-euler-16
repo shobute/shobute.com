@@ -1,0 +1,18 @@
+<p><a href="https://projecteuler.net/problem=16">Problem 16</a> asks:</p>
+<blockquote><p>What is the sum of the digits of the number 2<sup>1000</sup>?</p></blockquote>
+<p>Very easy in Java thanks to <code>BigInteger</code>:</p>
+<pre>
+import java.math.BigInteger;
+
+public class Problem16 {
+    public static void main(String[] args) {
+        BigInteger number = new BigInteger("2").pow(1000);
+        int sum = 0;
+        while (number.compareTo(BigInteger.ZERO) > 0) {
+            sum += number.remainder(BigInteger.TEN).intValue();
+            number = number.divide(BigInteger.TEN);
+        }
+        System.out.println(sum);
+    }
+}
+</pre>

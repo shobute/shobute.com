@@ -1,0 +1,33 @@
+<p><a href="https://projecteuler.net/problem=14">Problem 14</a> asks:</p>
+<blockquote>
+    <p>The following iterative sequence is defined for the set of positive integers:</p>
+    <p>n → n/2 (n is even) <br />n → 3n + 1 (n is odd)</p>
+    <p>Which starting number, under one million, produces the longest chain?</p>
+</blockquote>
+<p>Here’s my solution in Java:</p>
+<pre>
+public class Problem14 {
+    public static void main(String[] args) {
+        final int MAX = 1_000_000;
+        int longestChain = 0;
+        int result = -1;
+        int cache[] = new int[MAX];
+        for (int n = 2; n &lt; MAX; n++) {
+            int terms = 1;
+            long m = n;
+            while (m >= n) {
+                m = (m % 2 == 0) ? m / 2 : 3 * m + 1;
+                terms++;
+            }
+            terms += cache[(int)m];  // safe to cast because m &lt; n
+            cache[n] = terms;
+            if (terms > longestChain) {
+                longestChain = terms;
+                result = n;
+            }
+        }
+        System.out.println(result);
+    }
+}
+</pre>
+<p>It stores the results it finds as it goes, so it doesn’t have to repeat the same computations.</p>

@@ -1,0 +1,19 @@
+<p><a href="http://projecteuler.net/problem=2">Problem 2</a> asks:</p>
+<blockquote><p>By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.</p></blockquote>
+<p>Another straight forward problem, here's my solution:</p>
+<pre>public class Problem2 {
+    public static void main(String[] args) {
+        int n = 1, m = 2;
+        int sum = 0;
+        int temp;
+        while (m &lt;= 4_000_000) {
+            if (m % 2 == 0) sum += m;
+            temp = n;
+            n = m;
+            m += temp;
+        }
+        System.out.println(sum);
+    }
+}
+</pre>
+<p>With n and m being the n<sup>th</sup> and (n+1)<sup>th</sup> term in the sequence respectively.</p>

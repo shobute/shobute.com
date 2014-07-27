@@ -1,0 +1,28 @@
+<p><a href="https://projecteuler.net/problem=1">Problem 1</a> asks:</p>
+<blockquote><p>Find the sum of all the multiples of 3 or 5 below 1000.</p></blockquote>
+<p>Very simple, just go through every number between 0 and 1000, and if it&rsquo;s a multiple of 3 or 5 add it to the running total.</p>
+<p>Here&rsquo;s my initial solution in Java:</p>
+<pre>public class Problem1 {
+    public static void main(String[] args) {
+        int sum = 0;
+        for (int i = 0; i &lt; 1000; i++) {
+            if (i % 3 == 0 || i % 5 == 0) sum += i;
+        }
+        System.out.println(sum);
+    }
+}</pre>
+<p>This is fine if you only want to find the multiples below 1000, but for big ranges we can do <em>far</em> better.</p>
+<p>We can solve this problem in constant time by making use of the fact that: $$\sum_{i=1}^ni = \frac{n(n+1)}2$$</p>
+<p>The sum of all multiples of 3 and 5 below n can be calculated as: $$3\sum_{i=1}^{\lfloor\tfrac{1}{3}n-1\rfloor}i + 5\sum_{i=1}^{\lfloor\tfrac{1}{5}n-1\rfloor}i - 15\sum_{i=1}^{\lfloor\tfrac{1}{15}n-1\rfloor}i$$</p>
+<p>Multiples of 15 have to be subtracted to remove duplicates which were multiples of both 5 and 3. One needs to be subtracted from each range because the questions says <em>below</em> 1000.</p>
+<p>Using the earlier formula, this expands to: $$\frac{3\lfloor\tfrac{1}{3}m\rfloor(\lfloor\tfrac{1}{3}m\rfloor+1) + 5\lfloor\tfrac{1}{5}m\rfloor(\lfloor\tfrac{1}{5}m\rfloor+1) - 15\lfloor\tfrac{1}{15}m\rfloor(\lfloor\tfrac{1}{15}m\rfloor+1)}2$$ where \(m = n -1\).</p>
+<p>Translating into Java we get:</p>
+<pre>public class Problem1 {
+    public static void main(String[] args) {
+        final long RANGE = 1000;
+        long m = RANGE - 1;
+        long sum = (3 * (m / 3) * (m / 3 + 1) + 5 * (m / 5) * (m / 5 + 1) -
+                   15 * (m / 15) * (m / 15 + 1)) / 2;
+        System.out.println(sum);
+    }
+}</pre>

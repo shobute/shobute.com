@@ -1,0 +1,20 @@
+<p><a href="http://projecteuler.net/problem=3">Problem 3</a> asks:</p>
+<blockquote><p>What is the largest prime factor of the number 600&#8239;851&#8239;475&#8239;143?</p></blockquote>
+<p>Here&rsquo;s what I did in Java:</p>
+<pre>
+public class Problem3 {
+    public static void main(String[] args) {
+        long number = 600851475143L;
+        int result = 0;
+        for (int factor = 2; factor &lt;= number; factor++) {
+            if (number % factor == 0) {
+                result = factor;
+                number /= factor;
+                factor = 2;
+            }
+        }
+        System.out.println(result);
+    }
+}
+</pre>
+<p>This required a little more thought to write efficiently, but my solution turned out very simple so it&rsquo;s easy to follow.</p>

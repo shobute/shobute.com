@@ -1,0 +1,11 @@
+<p>The backend of <span class="logo">Shobute</span> is very simple, all the blog posts are HTML files stored in the directory <code>posts/</code>, the modification time of each file is used to tell when they were last updated.</p>
+<p>Occasionally I want to make a very small change to a file without updating its modification time, I wrote the following Vim function to do that:</p>
+<pre>
+function! WriteSmall()
+    let mtime = system("date -d @`stat -c %Y ".shellescape(expand('%:p')) . "`")
+    write
+    call system("touch --date='".mtime."' ".shellescape(expand('%:p')))
+endfunction
+map &lt;F4> :call WriteSmall()&lt;CR>
+</pre>
+<p>I&rsquo;m sure there are other uses for it. You can put it in your Vim configuration and then press F4 (or map it to another key) every time you want to write the file without updating the modification time. It assumes you have <code>date</code>, <code>stat</code> and <code>touch</code> from the GNU userland.</p>

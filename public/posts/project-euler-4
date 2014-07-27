@@ -1,0 +1,26 @@
+<p><a href="http://projecteuler.net/problem=4">Problem 4</a> asks:</p>
+<blockquote><p>Find the largest palindrome made from the product of two 3-digit numbers.</p></blockquote>
+<p>I solved this with a simple brute force solution in Java:</p>
+<pre>public class Problem4 {
+    public static void main(String[] args) {
+        int product, rProduct, temp;
+        int result = 0;
+        for (int a = 100; a &lt; 1000; a++) {
+            // start from `a' to avoid duplicates
+            for (int b = a; b &lt; 1000; b++) {
+                product = a * b;
+                temp = product;
+                rProduct = 0;
+                while (temp &gt; 0) {
+                    rProduct = rProduct * 10 + temp % 10;
+                    temp = temp / 10;
+                }
+                if (product == rProduct &amp;&amp; product &gt; result) {
+                    result = product;
+                }
+            }
+        }
+        System.out.println(result);
+    }
+}</pre>
+<p>I would try to come up with a more efficient solution if the numbers were bigger, but as is it runs in under a tenth of a second.</p>

@@ -1,0 +1,13 @@
+<p><a href="https://projecteuler.net/problem=9">Problem 9</a> asks:</p>
+<blockquote><p>There exists exactly one <a href="https://en.wikipedia.org/wiki/Pythagorean_triple">Pythagorean triplet</a> for which \(a + b + c = 1000\). Find the product \(abc\).</p></blockquote>
+<p>I solved this with pen and paper.</p>
+<p>I already know a Pythagorean triplet \((a, b, c)\) can be written as \(k(2mn, m^2-n^2, m^2+n^2)\) where \(k, m, n \in \mathbb{N} \cdot m > n\) by <a href="https://en.wikipedia.org/wiki/Pythagorean_triple#Proof_of_Euclid.27s_formula">Euclid&rsquo;s formula</a>, so using that fact:$$a + b + c = 1000$$ can be writen as,
+$$\begin{align}&2mn + m^2 - n^2 + m^2 + n^2 = 1000\\
+\implies &m(m + n) = 500\\
+\implies &m = 20, n = 5\end{align}$$
+therefore,
+$$\begin{align}a &= 2\times20\times5 = 200\\
+b &= 20^2 - 5^2 = 375\\
+c &= 20^2 + 5^2 = 425\\
+abc &= 200\times375\times425 = 31875000\end{align}$$
+</p>

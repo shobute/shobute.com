@@ -1,0 +1,8 @@
+<p><a href="https://projecteuler.net/problem=17">Problem 17</a> asks:</p>
+<blockquote><p>If all the numbers from 1 to 1 000 (one thousand) inclusive were written out in words, how many letters would be used?</p></blockquote>
+<p>This problem can be solved by hand. I essentially used Python as a calculator to solve it:</p>
+<pre>
+len("onethousand" + 900*"hundred" + 190*"onetwothreefourfivesixseveneightnine" +
+    100*"twentythirtyfortyfiftysixtyseventyeightyninety" + 891*"and" +
+    10*"teneleventwelvethirteenfourteenfifteensixteenseventeeneighteennineteen")
+</pre>

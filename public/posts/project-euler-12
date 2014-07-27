@@ -1,0 +1,18 @@
+<p><a href="https://projecteuler.net/problem=12">Problem 12</a> asks:</p>
+<blockquote><p>What is the value of the first triangle number to have over five hundred divisors?</p></blockquote>
+<p>Here&rsquo;s my solution in Java:</p>
+<pre>
+public class Problem12 {
+    public static void main(String[] args) {
+        int triangle = 0;
+        for (int n = 1, numFactors = 0; numFactors &lt;= 500; n++) {
+            triangle = n * (n + 1) / 2;
+            numFactors = 2; 
+            for (int div = 2; div * div &lt;= triangle; div++) {
+                if (triangle % div == 0) numFactors += 2;
+            }
+        }
+        System.out.println(triangle);
+    }
+}
+</pre>

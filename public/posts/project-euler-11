@@ -1,0 +1,5 @@
+<p><a href="https://projecteuler.net/problem=11">Problem 11</a> asks:</p>
+<blockquote><p>What is the greatest product of four adjacent numbers in any direction (up, down, left, right, or diagonally) in the 20&times;20 grid?</p></blockquote>
+<p>I was going to solve this in Java but ended up just using my eyes (with a little help from Vim).</p>
+<p><img src="http://i.imgur.com/cKXOd.png" onerror="this.src='/static/images/cheat11.png'" alt="Searching [98]\d in Vim with 'hlsearch' set on." title="Searching [98]\d in Vim with 'hlsearch' set on." /></p>
+

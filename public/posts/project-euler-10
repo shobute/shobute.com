@@ -1,0 +1,21 @@
+<p><a href="https://projecteuler.net/problem=10">Problem 10</a> asks:</p>
+<blockquote><p>Find the sum of all the primes below two million.</p></blockquote>
+<p>Here&rsquo;s my solution in Java:</p>
+<pre>
+public class Problem10 {
+    public static void main(String[] args) {
+        int max = 2_000_000;
+        boolean[] isComposite = new boolean[max + 1];
+        for (int i = 2; i * i &lt;= max; i++) {
+            if (!isComposite[i]) {
+                for (int j = i; i * j &lt;= max; j++) isComposite[i*j] = true;
+            }
+        }
+        long sum = 0;
+        for (int i = 2; i &lt;= max; i++) if (!isComposite[i]) sum += i; 
+        System.out.println(sum);
+    }
+}
+</pre>
+<p>It uses the <a href="https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes">sieve of Eratosthenes</a> algorithm. It could be optimized by using the <a href="https://en.wikipedia.org/wiki/Sieve_of_Atkin">sieve of Atkin</a>, and/or using a bit vector instead of a boolean array, but as is it runs in a very fast time.</p>
+

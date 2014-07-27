@@ -1,0 +1,6 @@
+<p><a href="https://projecteuler.net/problem=15">Problem 15</a> asks:</p>
+<blockquote>
+    <p>Starting in the top left corner of a 2×2 grid, there are 6 routes (without backtracking) to the bottom right corner.</p>
+    <p>How many routes are there through a 20×20 grid?</p>
+</blockquote>
+<p>If you know anything about <a href="https://en.wikipedia.org/wiki/Combinations">combinations</a> in mathematics this problem is easy to solve without a line of code. You just use the binomial coefficient: $$\binom{40}{20} = \frac{40!}{20!^2}$$</p>

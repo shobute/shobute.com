@@ -1,0 +1,29 @@
+<p><a href="https://projecteuler.net/problem=8">Problem 8</a> asks:</p>
+<blockquote>
+    <p>Find the greatest product of five consecutive digits in the 1000-digit number.</p>
+    <p>7316717653133062491922511<wbr>[&hellip;]<wbr>3600823257530420752963450</p>
+</blockquote>
+<p>I did a simple bruteforce in Java:</p>
+<pre>
+import java.nio.file.*;
+import java.io.IOException;
+
+public class Problem8 {
+    public static void main(String[] args) {
+        Path path = Paths.get("problem8.txt");
+        try {
+            byte[] bigNum = Files.readAllBytes(path);
+            int result = 0;
+            for (int i=0; i&lt;bigNum.length-5; i++) {
+                int product = 1;
+                for (int j=i; j&lt;i+5; j++) product *= bigNum[j] - '0';
+                if (product > result) result = product;
+            }
+            System.out.println(result);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+}
+</pre>
+<p>No optimizations and runs in under 0.14 seconds (on a 2.26GHz CPU).</p>
