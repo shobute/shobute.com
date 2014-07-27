@@ -1,0 +1,4 @@
+shobute.com
+===========
+
+My blog
