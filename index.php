@@ -26,7 +26,7 @@ for ($i = 1; ($line = fgets($fortune)) !== false; $i++) {
         <meta name="description" content="The blog of a British computer science student." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
         <title>Shobute <?php if(!empty($title)) echo "- $title"; ?></title>
-        <link href="/static/style" rel="stylesheet" type="text/css" media="screen" />
+        <link href="/static/style.css.gz" rel="stylesheet" type="text/css" media="screen" />
         <link rel="icon" type="image/png" href="/static/favicon.gif" />
         <link href="/feed" type="application/atom+xml" rel="alternate" title="Shobute's ATOM Feed">
         <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
