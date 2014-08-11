@@ -1,7 +1,6 @@
 <?php
 error_reporting(0);
 header('Content-Type: text/html; charset=utf-8');
-#if ($_SERVER['HTTP_USER_AGENT'] != 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11') die('hax');
 ini_set('zlib.output_compression', 'On');
 if (empty($_GET['error'])) $url = explode('/', htmlspecialchars(rawurldecode($_SERVER['REQUEST_URI'])));
 else { $url[1] = 'posts'; $url[2] = '404'; }
@@ -30,7 +29,6 @@ for ($i = 1; ($line = fgets($fortune)) !== false; $i++) {
         <link rel="icon" type="image/png" href="/static/favicon.gif" />
         <link href="/feed" type="application/atom+xml" rel="alternate" title="Shobute's ATOM Feed">
         <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
-        <!--[if lt IE 9]><script>document.createElement('header');document.createElement('article');document.createElement('footer');document.createElement('time');</script><![endif]-->
         <script type="text/javascript">
 
           var _gaq = _gaq || [];
@@ -58,11 +56,18 @@ for ($i = 1; ($line = fgets($fortune)) !== false; $i++) {
                 <hr />
             </header><?php
                 if (empty($url[2])) {
-                    $files = scandir('posts', 1);
+                    $files = scandir('posts');
                     $postfiles = array();
-                    foreach ($files as $file)
-                        if ($file[0] != '.')
-                            $postfiles[filemtime("posts/$file")] = $file;
+                    $i = 0;
+                    foreach ($files as $file) {
+                        if ($file[0] != '.') {
+                            $mtime = filemtime("posts/$file");
+                            if (array_key_exists($mtime, $postfiles)) {
+                                $mtime += ++$i;
+                            }
+                            $postfiles[$mtime] = $file;
+                        }
+                    }
                     krsort($postfiles);
                     $i = 1;
                     if (!empty($url[1])) echo '<h2>All Posts</h2>';
