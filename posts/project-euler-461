@@ -13,62 +13,64 @@
 #define SIZE (15000/2 * (15000 + 1))
 #define PI 3.14159265358979323846
 
-double f_10000 (double k) {
-    return exp(k/10000) - 1;
-}
-
-struct pair {
-    int a;
-    int b;
-    double sum;
-};
-
-int cmp (const void *_a, const void *_b) {
-    double a = ((const struct pair *)_a)->sum;
-    double b = ((const struct pair *)_b)->sum;
+int cmp (const void *a, const void *b) {
+    const double *da = (const double *) a;
+    const double *db = (const double *) b;
  
-   return (a > b) - (a &lt; b);
+   return (da > db) - (da &lt; db);
 }
 
 int main (void) {
-    struct pair *pairs = malloc(SIZE * sizeof(struct pair));
+    double *sums, f[15000], bestError;
+    int a, b, c, d, bestI, bestMid;
 
-    int k = 0;
     for (int i = 0; i &lt; 15000; i++) {
+        f[i] = exp((double)i/10000) - 1;
+    }
+
+    sums = malloc(SIZE * sizeof(double));
+    for (int i = 0, k = 0; i &lt; 15000; i++) {
         for (int j = i; j &lt; 15000; j++) {
-            pairs[k].a = i;
-            pairs[k].b = j;
-            pairs[k].sum = f_10000(i) + f_10000(j);
-            k++;
+            sums[k++] = f[i] + f[j];
         }
     }
 
-    qsort(pairs, SIZE, sizeof(struct pair), cmp);
+    qsort(sums, SIZE, sizeof(double), cmp);
 
-    double closest[3] = { 1, 0, 0 };
+    bestError = 1;
     for (int i = 0; i &lt; SIZE; i++) {
         int min = 0;
         int max = SIZE;
         int mid;
         while (max >= min) {
             mid = (min + max) / 2;
-            if (pairs[i].sum + pairs[mid].sum &lt;= PI) min = mid + 1;
+            if (sums[i] + sums[mid] &lt;= PI) min = mid + 1;
             else max = mid -1;
         }
-        double error = fabs(pairs[i].sum + pairs[mid].sum - PI);
-        if (error &lt; closest[0]) {
-            closest[0] = error;
-            closest[1] = i;
-            closest[2] = mid;
+        double error = fabs(sums[i] + sums[mid] - PI);
+        if (error &lt; bestError) {
+            bestError = error;
+            bestI = i;
+            bestMid = mid;
         }
     }
 
-    int a = pairs[(int)closest[1]].a;
-    int b = pairs[(int)closest[1]].b;
-    int c = pairs[(int)closest[2]].a;
-    int d = pairs[(int)closest[2]].b;
+    for (int i = 0; i &lt; 15000; i++) {
+        for (int j = i; j &lt; 15000; j++) {
+            if (sums[bestI] == f[i] + f[j]) {
+                a = i;
+                b = j;
+            }
+            if (sums[bestMid] == f[i] + f[j]) {
+                c = i;
+                d = j;
+            }
+        }
+    }
 
-    printf("%d^2 + %d^2 + %d^2 + %d^2 = %d\n", a, b, c, d, a*a + b*b + c*c + d*d);
+    printf("%d² + %d² + %d² + %d² = %d\n", a, b, c, d, a*a + b*b + c*c + d*d);
+
+    return 0;
 }
 </pre>
-<p>It runs in just under a minute (on a 3.5 GHz CPU). I will improve the code and update this post shortly with a full explanation of the technique I used.</p>
+<p>It runs in 23 seconds (on a 3.5 GHz CPU). I will update this post shortly with a full explanation of the technique I used.</p>
