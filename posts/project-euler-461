@@ -73,4 +73,4 @@ int main (void) {
     return 0;
 }
 </pre>
-<p>It runs in 23 seconds (on a 3.5 GHz CPU). I will update this post shortly with a full explanation of the technique I used.</p>
+<p>It runs in 23 seconds (on a 3.5 GHz CPU).</p>
