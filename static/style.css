@@ -39,6 +39,7 @@ strong { font-weight: bold; }
 em { font-style: italic; }
 #wrapper { max-width: 36em; margin: 0 auto; padding: 1em; }
 p, ol, ul { margin: 1.6em 0; line-height: 1.6;}
+ul ul { margin: 0 inherit; }
 ol, ul { margin-left: 20px; }
 header + p { margin: 0; }
 .logo { font-family: 'PT Serif', serif; letter-spacing: -.06em; font-size: 1.1em; }
@@ -56,8 +57,9 @@ blockquote cite { font-style: normal; }
 a { text-decoration: none; }
 a:hover { text-decoration: underline; }
 h2 { font-size: 2.5em; }
-h3 { font-size: 2em; }
+h3 { font-size: 1.5em; }
 hr { border: 1px solid #1d6a96; }
+article > hr { border: 1px solid #1d6a96; opacity: 0.1; }
 #wrapper > hr { margin: 1.6em 0; opacity: .67; }
 article footer { text-align: right; }
 sub, sup { font-size: .83em; }
