@@ -64,6 +64,7 @@ sub, sup { font-size: .83em; }
 sub { vertical-align: sub; }
 sup { vertical-align: super; }
 #wrapper > header, footer { opacity: .67; }
+small { font-size: 0.7em; }
 
 /* mobile */
 @media screen and (max-width: 600px) {
