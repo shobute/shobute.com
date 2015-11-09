@@ -2,8 +2,7 @@
 error_reporting(0);
 header('Content-Type: text/html; charset=utf-8');
 ini_set('zlib.output_compression', 'On');
-if (empty($_GET['error'])) $url = explode('/', htmlspecialchars(rawurldecode($_SERVER['REQUEST_URI'])));
-else { $url[1] = 'posts'; $url[2] = '404'; }
+$url = explode('/', htmlspecialchars(rawurldecode($_SERVER['REQUEST_URI'])));
 if (!empty($url[1])) {
     if (empty($url[2])) $title = 'all posts';
     else $title = ucwords(str_replace('-', ' ', $url[2]));
@@ -22,7 +21,7 @@ for ($i = 1; ($line = fgets($fortune)) !== false; $i++) {
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <meta name="description" content="The blog of a British computer science student." />
+        <meta name="description" content="A software engineer's blog." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
         <title>Shobute <?php if(!empty($title)) echo "- $title"; ?></title>
         <link href="/static/style.css" rel="stylesheet" type="text/css" media="screen" />
@@ -30,17 +29,14 @@ for ($i = 1; ($line = fgets($fortune)) !== false; $i++) {
         <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
         <script type="text/javascript">
             MathJax.Hub.Config({ "HTML-CSS": { linebreaks: { automatic: true } } });
-
           var _gaq = _gaq || [];
           _gaq.push(['_setAccount', 'UA-36440084-1']);
           _gaq.push(['_trackPageview']);
-
           (function() {
             var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
           })();
-
         </script>
     </head>
     <body>
@@ -48,10 +44,7 @@ for ($i = 1; ($line = fgets($fortune)) !== false; $i++) {
             <header>
                 <h1>
                     <a href="/" class="logo">Shobute</a>
-                    <a href="/posts/" id="flair" title="<?php
-                        if (empty($_GET['error'])) echo $fortune;
-                        else echo 'Uh oh, a 404 error.';
-                    ?>">&#9752;</a>
+                    <a href="/posts/" id="flair" title="<?=$fortune?>">&#9752;</a>
                 </h1>
                 <hr />
             </header><?php
