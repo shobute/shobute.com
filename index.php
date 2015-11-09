@@ -27,7 +27,6 @@ for ($i = 1; ($line = fgets($fortune)) !== false; $i++) {
         <title>Shobute <?php if(!empty($title)) echo "- $title"; ?></title>
         <link href="/static/style.css" rel="stylesheet" type="text/css" media="screen" />
         <link rel="icon" type="image/png" href="/static/favicon.gif" />
-        <link href="/feed" type="application/atom+xml" rel="alternate" title="Shobute's ATOM Feed">
         <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
         <script type="text/javascript">
             MathJax.Hub.Config({ "HTML-CSS": { linebreaks: { automatic: true } } });
