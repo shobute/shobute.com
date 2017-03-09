@@ -16,14 +16,14 @@ app.jinja_loader = ChoiceLoader([
 @app.route('/')
 def index():
     page = int(request.args.get('page', 0))
-    return render_template('index.html', posts=getPosts(page), page=page)
+    return render_template('index.html', posts=getPosts(page), next_page=page+1)
 
 
 @app.route('/<slug>')
 def showPost(slug=None):
     try:
         post = getPost(slug)
-        return render_template('index.html', posts=[post], page=-1)
+        return render_template('index.html', posts=[post])
     except IOError:
         return not_found('Could not find ' + slug)
 
