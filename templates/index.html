@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% block content %}
+{% for post in posts %}
+    {% include "post.html" %}
+    <hr />
+{% endfor %}
+{% endblock %}

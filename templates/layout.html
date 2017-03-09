@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="description" content="A software engineer's blog." />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+        <title>Shobute</title>
+        <link href="/static/style.css" rel="stylesheet" type="text/css" media="screen" />
+        <link rel="icon" type="image/png" href="/static/favicon.gif" />
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    </head>
+    <body>
+        <div id="wrapper">
+            <header>
+                <h1>
+                    <a href="/" class="logo">Shobute</a>
+                    <a href="/?page={{ page + 1 }}" id="flair">&#9752;</a>
+                </h1>
+                <hr />
+            </header>
+            {% block content %}{% endblock %}
+            <footer>
+                <p>All content is <a href="http://creativecommons.org/publicdomain/zero/1.0/">public domain</a> unless otherwise stated. <a href="/posts/about-shobute" class="logo">Shobute</a> is powered by procrastination.</p>
+            </footer>
+        </div>
+    </body>
+</html>

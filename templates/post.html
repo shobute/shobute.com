@@ -1,0 +1,7 @@
+{% block content %}
+    <article>
+        <h2><a href="/{{ post.slug }}">{{ post.slug|replace("-", " ")|title }}</a></h2>
+        {% include post.slug + ".html" %}
+        <footer><p>Last updated on <time title="{{ post.updated.strftime('%Y-%m-%d %H:%M:%S') }}">{{ post.updated.strftime('%Y-%m-%d') }}</time>.</p></footer>
+    </article>
+{% endblock %}
