@@ -56,7 +56,8 @@ blockquote p { font-style: italic; }
 blockquote cite { font-style: normal; }
 a { text-decoration: none; }
 a:hover { text-decoration: underline; }
-h2 { font-size: 2.5em; }
+h2 { font-size: 1.5em; }
+h2 strong { font-size: 1.5em; }
 h3 { font-size: 1.5em; }
 hr { border: 1px solid #1d6a96; }
 article > hr { border: 1px solid #1d6a96; opacity: 0.1; }

@@ -14,42 +14,48 @@ app.jinja_loader = ChoiceLoader([
 
 
 @app.route('/')
-def index():
+@app.route('/<category>/')
+def index(category=None):
     page = int(request.args.get('page', 0))
-    return render_template('index.html', posts=getPosts(page), next_page=page+1)
+    return render_template('index.html', posts=getPosts(page, category), next_page=page+1)
 
 
-@app.route('/<slug>')
-def showPost(slug=None):
+@app.route('/<category>/<slug>')
+def showPost(category, slug):
     try:
-        post = getPost(slug)
+        post = getPost(category, slug)
         return render_template('index.html', posts=[post])
     except IOError:
-        return not_found('Could not find ' + slug)
+        return not_found(None)
 
 
-def getPost(slug):
-    file = 'posts/' + slug + '.html'
+def getPost(category, slug):
+    file = 'posts/{cat}/{slug}.html'.format(cat=category, slug=slug)
     if not os.path.isfile(file):
         raise IOError
     return {
+        'category': category,
         'slug': slug,
         'updated': datetime.fromtimestamp(os.path.getmtime(file)),
     }
 
 
-def getPosts(page):
+def getPosts(page, request_category=None):
     page_size = 10
-
-    files = os.listdir('posts/')
     posts = []
-    for file in files:
-        if file[0] != '.':
-            posts.append(getPost(file.replace('.html', '')))
+
+    for category, _, files in list(os.walk('posts/'))[1:]:
+        category = category.replace('posts/', '')
+        if request_category is None or request_category == category:
+            for name in files:
+                if name[0] != '.':
+                    posts.append(getPost(category, name.replace('.html', '')))
+
     posts = sorted(posts, key=lambda post: post['updated'], reverse=True)
 
     posts_from = page_size * page
     posts_to = posts_from + page_size
+
     return posts[posts_from:posts_to]
 
 
