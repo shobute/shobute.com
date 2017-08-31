@@ -1,0 +1,21 @@
+<p>Xterm is bloated and archaic terminal emulator, but it ships with OpenBSD and gets the job done, so I'm happily using it.</p>
+<p>Browsing through the <a href="http://man.openbsd.org/xterm#Custom_Key_Bindings">6206 line long manual</a> I found an excellent snippet which I thought others might find useful.</p>
+<blockquote>
+    <p>Not everyone finds the three-button mouse bindings easy to use. In a wheel mouse, the middle button might be the wheel. As an alternative, you could add a binding shifted keys:</p>
+    <pre>
+*VT100*translations:      #override \n\
+    Shift <Key>Home:     copy-selection(SELECT) \n\
+    Shift <Key>Insert:   copy-selection(SELECT) \n\
+    Ctrl Shift <Key>C:   copy-selection(SELECT) \n\
+    Ctrl Shift <Key>V:   insert-selection(SELECT)
+    </pre>
+    <p>You would still use the left- and right-mouse buttons (typically 1 and 3) for beginning and extending selections.</p>
+</blockquote>
+<p>Switching this up slightly to use the <code>CLIPBOARD</code> buffer gives us:</p>
+<pre>
+xterm*VT100.Translations: #override \n\
+    Ctrl Shift <Key>C:    copy-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>V:    insert-selection(CLIPBOARD)
+</pre>
+<p>Add this to your <code>~/.Xdefaults</code> and reload the configuration with <code>xrdb -merge ~/.Xdefaults</code>.</p>
+<p>Now you can copy and paste from xterm using Ctrl-Shift-C and Ctrl-Shift-V respectively!</p>
