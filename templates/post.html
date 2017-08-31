@@ -1,7 +1,7 @@
 {% block content %}
     <article>
         <h2>
-            <a href="/{{ post.category}}">{{ post.category|replace("-", " ")|title }}</a>
+            <a href="/{{ post.category}}">{{ post.category|replace("-", " ") }}</a>
             /
             <strong><a href="/{{post.category}}/{{ post.slug }}">{{ post.slug|replace("-", " ")|title }}</a></strong>
         </h2>
